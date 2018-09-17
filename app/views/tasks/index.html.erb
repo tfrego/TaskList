@@ -1,0 +1,11 @@
+<h2>YOUR TASKS</h2>
+<ol>
+  <% @tasks.each do |task| %>
+    <li><h3><%= task[:task_desc]%></h3></li>
+      <ul>
+        <li>Mark Complete</li>
+        <li>Edit</li>
+        <li>Delete</li>
+      </ul>
+  <% end %>
+</ol>
