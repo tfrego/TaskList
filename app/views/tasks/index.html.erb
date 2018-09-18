@@ -1,9 +1,9 @@
 <h2>YOUR TASKS</h2>
 <ol>
   <% @tasks.each do |task| %>
-    <li><h3><%= task[:task_desc]%></h3></li>
+    <li><h3><a href="/tasks/<%= task.id %>"><%= task.name%></a></h3></li>
       <ul>
-        <li>Mark Complete</li>
+        <li><a href="">Mark Complete</a></li>
         <li>Edit</li>
         <li>Delete</li>
       </ul>
