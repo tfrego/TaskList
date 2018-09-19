@@ -1,11 +1,11 @@
 <h2>YOUR TASKS</h2>
 <ol>
   <% @tasks.each do |task| %>
-    <li><h3><a href="/tasks/<%= task.id %>"><%= task.name%></a></h3></li>
+    <li><h3><a href="<%= task_path(task.id) %>"><%= task.name%></a></h3></li>
       <ul>
-        <li><a href="">Mark Complete</a></li>
-        <li>Edit</li>
-        <li>Delete</li>
+        <li><a href="#">Mark Complete</a></li>
+        <li><a href="<%=edit_task_path(task.id)%>">Edit</a></li>
+        <li><a href="#">Delete</a</li>
       </ul>
   <% end %>
 </ol>
