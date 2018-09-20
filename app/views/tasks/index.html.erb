@@ -15,7 +15,7 @@
             <li><%= link_to "Mark Complete", complete_task_path(task.id), method: :patch %></li>
           <% end %>
           <li><a href="<%=edit_task_path(task.id)%>">Edit</a></li>
-          <li><%= link_to "Delete", task_path(task.id), method: :delete %></li>
+          <li><a href="<%=confirm_delete_path(task.id)%>">Delete</a></li>
         </ul>
     </section>
   <% end %>
