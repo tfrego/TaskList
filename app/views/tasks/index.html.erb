@@ -1,11 +1,22 @@
 <h2>YOUR TASKS</h2>
 <ol>
-  <% @tasks.each do |task| %>
-    <li><h3><a href="<%= task_path(task.id) %>"><%= task.name%></a></h3></li>
-      <ul>
-        <li><a href="#">Mark Complete</a></li>
-        <li><a href="<%=edit_task_path(task.id)%>">Edit</a></li>
-        <li><a href="#">Delete</a</li>
-      </ul>
+<% tasks = @tasks.order(:completion_date) %>
+<% tasks.each do |task| %>
+  <% if task.completion_date != '' %>
+    <section class="complete">
+  <% else %>
+    <section>
+  <% end %>
+      <li><h3><a href="<%= task_path(task.id) %>"><%= task.name%></a></h3></li>
+        <ul>
+          <% if task.completion_date != '' %>
+            <li><%= link_to "Mark Uncomplete", complete_task_path(task.id), method: :patch %></li>
+          <% else %>
+            <li><%= link_to "Mark Complete", complete_task_path(task.id), method: :patch %></li>
+          <% end %>
+          <li><a href="<%=edit_task_path(task.id)%>">Edit</a></li>
+          <li><%= link_to "Delete", task_path(task.id), method: :delete %></li>
+        </ul>
+    </section>
   <% end %>
 </ol>

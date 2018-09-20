@@ -2,4 +2,5 @@
 <ul>
   <li>Description: <%= @task.description %></li>
   <li>Completion Date: <%= @task.completion_date %></li>
+  <li><a href="<%=edit_task_path(@task.id)%>">Edit</a></li>
 </ul>

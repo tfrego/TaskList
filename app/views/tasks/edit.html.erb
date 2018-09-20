@@ -1,13 +1,13 @@
 <h2> Edit Task! </h2>
 
 <%= form_with model: @task do |f| %>
-  <%= f.label :name %>
+  <%= f.label :name, "Task" %>
   <%= f.text_field :name %>
 
   <%= f.label :description %>
-  <%= f.text_area :description %>
+  <%= f.text_field :description %>
 
-  <%= f.label :completion_date %>
+  <%= f.label :completion_date, "Completion Date" %>
   <%= f.text_field :completion_date %>
 
   <%= f.submit "Update Task", class: "book-button" %>
