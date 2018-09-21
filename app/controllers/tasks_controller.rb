@@ -10,7 +10,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(name: params[:task][:name], description: params[:task][:description])
+    @task = Task.new(task_params)
     if @task.save
       redirect_to root_path
     else
@@ -19,36 +19,27 @@ class TasksController < ApplicationController
   end
 
   def show
-    id = params[:id].to_i
-    @task = Task.find_by(id: id)
+    @task = Task.find_by(id: params[:id].to_i)
   end
 
   def edit
-    id = params[:id].to_i
-    @task = Task.find_by(id: id)
+    @task = Task.find_by(id: params[:id].to_i)
   end
 
   def update
-    id = params[:id].to_i
-    @task = Task.find_by(id: id)
-    @task.name = params[:task][:name]
-    @task.description = params[:task][:description]
-    @task.completion_date = params[:task][:completion_date]
+    task = Task.find_by(id: params[:id].to_i)
+    task.update(task_params)
 
-    if @task.save
-      redirect_to task_path
-    else
-      render :new
-    end
+    redirect_to task_path(task.id)
   end
 
   def complete
-    @task = Task.find(params[:id].to_i)
+    @task = Task.find_by(id: params[:id].to_i)
 
-    if @task.completion_date == ''
+    if @task.completion_date == nil
       @task.completion_date = DateTime.now
     else
-      @task.completion_date = ''
+      @task.completion_date = nil
     end
 
     if @task.save
@@ -57,12 +48,19 @@ class TasksController < ApplicationController
   end
 
   def confirm
-    @task = Task.find(params[:id].to_i)
+    @task = Task.find_by(id: params[:id].to_i)
   end
 
   def destroy
-    task = Task.find(params[:id].to_i)
+    task = Task.find_by(id: params[:id].to_i)
     task.destroy
     redirect_to root_path
   end
+
+  private
+
+  def task_params
+    return params.require(:task).permit(:name, :description)
+  end
+
 end

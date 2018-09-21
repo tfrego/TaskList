@@ -1,15 +1,15 @@
 <h1>YOUR TASKS</h1>
 <ol>
-<% tasks = @tasks.order(:completion_date) %>
+<% tasks = @tasks.order(:completion_date).reverse_order %>
 <% tasks.each do |task| %>
-  <% if task.completion_date != '' %>
+  <% if task.completion_date != nil %>
     <section class="complete">
   <% else %>
     <section>
   <% end %>
       <li><h3><a href="<%= task_path(task.id) %>"><%= task.name%></a></h3></li>
         <ul>
-          <% if task.completion_date != '' %>
+          <% if task.completion_date != nil %>
             <li><%= link_to "Mark Uncomplete", complete_task_path(task.id), method: :patch %></li>
           <% else %>
             <li><%= link_to "Mark Complete", complete_task_path(task.id), method: :patch %></li>
