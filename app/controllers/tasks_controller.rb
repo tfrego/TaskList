@@ -47,10 +47,6 @@ class TasksController < ApplicationController
     end
   end
 
-  def confirm
-    @task = Task.find_by(id: params[:id].to_i)
-  end
-
   def destroy
     task = Task.find_by(id: params[:id].to_i)
     task.destroy
